@@ -66,6 +66,235 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-github-imageBed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/04/github-imageBed/" class="article-date">
+  <time datetime="2019-04-04T02:11:22.617Z" itemprop="datePublished">2019-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/04/github-imageBed/">github图床</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-新建一个repositories"><a href="#1-新建一个repositories" class="headerlink" title="1. 新建一个repositories"></a>1. 新建一个repositories</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><ul>
+<li>进入repositories下的wiki选项中</li>
+<li>复制wiki对应的克隆地址</li>
+<li>在本地克隆项目</li>
+<li>进入文件夹，将要上传的图片放在文件夹中</li>
+<li>打开命令行，依次输入命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add ~</span><br><span class="line">$ git commit -a -m &quot;update&quot;</span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<ul>
+<li>现在已经将图片放置Github图床，图片的地址为：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://raw.githubusercontent.com/wiki/HelloMountain/ImageBed/pic/kafka2.png</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>HelloMountain</code>为你的Github用户名（username）<br><code>ImageBed</code>为你创建的repository的名称（repository）<br><code>pic</code> 为上传的文件夹名称<br><code>kafka2.png</code>为图片的名称</p>
+</blockquote>
+<h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><ul>
+<li>新建一个issues</li>
+<li>直接将图片拖进issues中即可</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/04/github-imageBed/" data-id="cju22ixm40004osuuq58lusuk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nginx-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/03/nginx-windows/" class="article-date">
+  <time datetime="2019-04-03T12:22:03.507Z" itemprop="datePublished">2019-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/03/nginx-windows/">Windows下Nginx的启动、停止等命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>1、启动：<br>C:\server\nginx-1.0.2&gt;start nginx或<br>C:\server\nginx-1.0.2&gt;nginx.exe</p>
+</li>
+<li><p>2、停止：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s stop或<br>C:\server\nginx-1.0.2&gt;nginx.exe -s quit<br>注：stop是快速停止nginx，可能并不保存相关信     息；quit是完整有序的停止nginx，并保存相关信息。</p>
+</li>
+<li><p>3、重新载入Nginx：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s reload<br>当配置信息修改，需要重新载入这些配置时使用此命令。</p>
+</li>
+<li><p>4、重新打开日志文件：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s reopen</p>
+</li>
+<li><p>5、查看Nginx版本：<br>C:\server\nginx-1.0.2&gt;nginx -v</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/03/nginx-windows/" data-id="cju22ixmh0007osuusnnlxb4a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ekl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/03/ekl/" class="article-date">
+  <time datetime="2019-04-03T10:29:40.174Z" itemprop="datePublished">2019-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/03/ekl/">windows环境下 elk 收集监控nginx日志</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>对于互联网公司来说，nginx的请求日志简直就是一座金矿，如果不能充分利用，简直太可惜了。<br>初期一般都是输出到日志文件，要查什么就awk\grep\uniq\sort…，能满足不少统计需求，但最大的缺点是不直观，不方便监控（目前虽然用了ELK，但是有些信息还是用shell统计，两者互补）。<br>整理下实施ELK最起码要实现的需求：</p>
+<ul>
+<li>查询条件（精确匹配）：一级域名、二级域名、客户真实IP、HTTP状态码、HTTP方法、request_time、response_time、代理IP、body_bytes_sent</li>
+<li>查询条件（模糊匹配）：url（如查找SQL注入关键字）、refere（流量来源）、agent（如查找搜索引擎）、近期（1周、1个月）内整体请求量走势情况；如果发现总体走势异常，要很方便找到那个域名走势异常；</li>
+<li>过去一个周期内（1天、1周、1月）所有请求构成，按不同域名出饼图；</li>
+<li>实时监控爬虫IP过高的频率访问（如单个IP1分钟请求超过100次报警）；</li>
+<li>实时监控500状态请求情况（如单个域名1分钟出现30个500就报警）；</li>
+</ul>
+<h1 id="3-nginx配置"><a href="#3-nginx配置" class="headerlink" title="3.nginx配置"></a>3.nginx配置</h1><ul>
+<li>下载nginx</li>
+<li>解压</li>
+<li>进入config目录，修改nginx.conf</li>
+</ul>
+<p>nginx.conf<br>日志以json格式输出，方便logstash解析；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">log_format json <span class="string">'&#123;"@timestamp":"$time_iso8601",'</span></span><br><span class="line">             <span class="string">'"@version":"1",'</span></span><br><span class="line">             <span class="string">'"client":"$remote_addr",'</span></span><br><span class="line">             <span class="string">'"url":"$uri",'</span></span><br><span class="line">             <span class="string">'"status":"$status",'</span></span><br><span class="line">             <span class="string">'"domian":"$host",'</span></span><br><span class="line">             <span class="string">'"host":"$server_addr",'</span></span><br><span class="line">             <span class="string">'"size":"$body_bytes_sent",'</span></span><br><span class="line">             <span class="string">'"responsetime":"$request_time",'</span></span><br><span class="line">             <span class="string">'"referer":"$http_referer",'</span></span><br><span class="line">             <span class="string">'"ua":"$http_user_agent"'</span></span><br><span class="line">          <span class="string">'&#125;'</span>;</span><br><span class="line">access_log  logs/access.log  json;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>启动 nginx (有很多种方法启动 nginx ）</p>
+<ul>
+<li>(1)直接双击nginx.exe，双击后一个黑色的弹窗一闪而过</li>
+<li>(2)打开cmd命令窗口，切换到nginx解压目录下，输入命令 nginx.exe 或者 start nginx ，回车即可</li>
+</ul>
+</li>
+<li><p>检查nginx是否启动成功<br>  直接在浏览器地址栏输入网址 <a href="http://localhost:80/" target="_blank" rel="noopener">http://localhost:80/</a>，回车，出现以下页面说明启动成功</p>
+</li>
+<li><p>关闭nginx</p>
+<pre><code>如果使用cmd命令窗口启动nginx，关闭cmd窗口是不能结束nginx进程的，可使用两种方法关闭nginx
+</code></pre><ul>
+<li>(1)输入nginx命令  nginx -s stop(快速停止nginx)  或  nginx -s quit(完整有序的停止nginx)</li>
+<li>(2)使用taskkill   taskkill /f /t /im nginx.exe</li>
+</ul>
+</li>
+<li><p>参考博客：<a href="https://www.cnblogs.com/jiangwangxiang/p/8481661.html/" target="_blank" rel="noopener">https://www.cnblogs.com/jiangwangxiang/p/8481661.html/</a></p>
+</li>
+</ul>
+<h1 id="4-logstash配置"><a href="#4-logstash配置" class="headerlink" title="4.logstash配置"></a>4.logstash配置</h1><p>logstash是作为数据采集，功能和flume类似</p>
+<ul>
+<li>下载 logstash</li>
+<li>解压</li>
+<li>进入bin目录新建配置文件logstash.conf</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    file &#123;</span><br><span class="line">        path =&gt; <span class="string">"C:/Users/qingshan/Downloads/nginx-1.15.10/logs/access.log"</span></span><br><span class="line">        type =&gt; <span class="string">"nginx"</span></span><br><span class="line">        codec =&gt; <span class="string">"json"</span></span><br><span class="line">        start_position =&gt; <span class="string">"beginning"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter &#123;</span><br><span class="line">    geoip &#123;</span><br><span class="line">        fields =&gt; [<span class="string">"city_name"</span>, <span class="string">"country_name"</span>, <span class="string">"latitude"</span>, <span class="string">"longitude"</span>, <span class="string">"region_name"</span>,<span class="string">"region_code"</span>]</span><br><span class="line">        source =&gt; <span class="string">"client"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">    <span class="keyword">if</span> [type] == <span class="string">"nginx"</span> &#123;</span><br><span class="line">        elasticsearch &#123;</span><br><span class="line">            hosts =&gt; [<span class="string">"127.0.0.1:9200"</span>]</span><br><span class="line">            index =&gt; <span class="string">"nelson-nginx-%&#123;+YYYY.MM.dd&#125;"</span></span><br><span class="line">        &#125;</span><br><span class="line">        stdout &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令行进入logstash 目录 ，启动logstash <code>bin\logstash -f logstash.conf</code></li>
+<li>浏览器访问:<a href="http://localhost:9600/" target="_blank" rel="noopener">http://localhost:9600/</a></li>
+</ul>
+<hr>
+<p>error</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Elasticsearch Unreachable: [http://127.0.0.1:9200/][Manticore::SocketException] Connection refused: connect"</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>检查发现未开启es</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/03/ekl/" data-id="cju22ixlp0000osuul5ofv5n5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-logstash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/02/logstash/" class="article-date">
+  <time datetime="2019-04-02T08:15:55.929Z" itemprop="datePublished">2019-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/02/logstash/">如何在多台电脑上维护hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用hexo搭建的博客，以前电脑中创建过hexo根目录，<br>然后中途更换过电脑，以前电脑上的配置文件 在现电脑上都没有了<br>解决方法：<br>如果想要继续维护以前的博客，那么：</p>
+<p>首先，我们要把以前github上博客的仓库clone下来，通过实践，我们知道，这个clone下来的文件夹就是以前本地博客根目录下的public文件夹<br>我们可以自己本地安装hexo之后，自己创建一个public文件夹，然后把clone下来的文件全部放进去</p>
+<p>为了以后不再这么麻烦，我们可以直接在GitHub上备份一下我们的hexo配置文件，以后再遇到这种情况的时候，就可以直接clone博客配置文件到本地， clone博客内容文件夹到本地，然后把内容文件夹该名称public放在配置文件夹根目录即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/02/logstash/" data-id="cju22ixm60006osuujl7g58m1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-kafka" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/01/kafka/" class="article-date">
@@ -89,20 +318,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="flume监控文件"><a href="#flume监控文件" class="headerlink" title="flume监控文件"></a>flume监控文件</h1><ul>
-<li>flume的安装与测试<ul>
+<li><p>flume的安装与测试</p>
+<ul>
 <li>下载flume（windows与linux相同）</li>
 <li>解压：<code>tar xvzf  apache-flume-1.8.0-bin.tar.gz</code></li>
 <li>进入conf目录：<code>cd flume/conf</code></li>
-<li>修改或创建配置文件：<code>kafka.conf</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  # source的名字</span><br><span class="line">agent.sources = s1</span><br><span class="line"># channels的名字</span><br><span class="line">agent.channels = c1</span><br><span class="line"># sink的名字</span><br><span class="line">agent.sinks = r1</span><br><span class="line"># 指定source使用的channel</span><br><span class="line">agent.sources.s1.channels = c1</span><br><span class="line"># 指定sink使用的channel</span><br><span class="line">agent.sinks.r1.channel = c1</span><br><span class="line">######## source相关配置 ########</span><br><span class="line"># source类型</span><br><span class="line">agent.sources.s1.type = TAILDIR</span><br><span class="line"># 元数据位置</span><br><span class="line">agent.sources.s1.positionFile = /root/apache-flume-<span class="number">1.8</span>.0-bin/conf/taildir_position.json</span><br><span class="line"># 监控的目录</span><br><span class="line">agent.sources.s1.filegroups = f1</span><br><span class="line">#agent.sources.s1.filegroups.f1=/Users/wangpei/tempData/flume/data/.*log  /home/flume_test</span><br><span class="line">agent.sources.s1.filegroups.f1=/home/flume_test/.*log</span><br><span class="line">agent.sources.s1.fileHeader = <span class="keyword">true</span></span><br><span class="line">######## channel相关配置 ########</span><br><span class="line">agent.channels.c1.type = memory</span><br><span class="line">agent.channels.c1.capacity = <span class="number">1000000</span></span><br><span class="line">agent.channels.c1.transactionCapacity = <span class="number">100</span></span><br><span class="line">agent.channels.c1.keep-alive = <span class="number">3</span></span><br><span class="line">######## sinks 相关配置 ########</span><br><span class="line">#agent.sinks.r1.type=logger</span><br><span class="line">agent.sinks.r1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">agent.sinks.r1.kafka.bootstrap.servers=localhost:<span class="number">9092</span></span><br><span class="line">agent.sinks.r1.kafka.topic=qstopic</span><br><span class="line">agent.sinks.r1.serializer.class=kafka.serializer.StringEncoder</span><br><span class="line">agent.sinks.r1.kafka.producer.acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<li>修改或创建配置文件：<code>kafka.conf</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  # source的名字</span><br><span class="line">agent.sources = s1</span><br><span class="line"># channels的名字</span><br><span class="line">agent.channels = c1</span><br><span class="line"># sink的名字</span><br><span class="line">agent.sinks = r1</span><br><span class="line"># 指定source使用的channel</span><br><span class="line">agent.sources.s1.channels = c1</span><br><span class="line"># 指定sink使用的channel</span><br><span class="line">agent.sinks.r1.channel = c1</span><br><span class="line">######## source相关配置 ########</span><br><span class="line"># source类型</span><br><span class="line">agent.sources.s1.type = TAILDIR</span><br><span class="line"># 元数据位置</span><br><span class="line">agent.sources.s1.positionFile = /root/apache-flume-<span class="number">1.8</span>.0-bin/conf/taildir_position.json</span><br><span class="line"># 监控的目录</span><br><span class="line">agent.sources.s1.filegroups = f1</span><br><span class="line">#agent.sources.s1.filegroups.f1=/Users/wangpei/tempData/flume/data/.*log  /home/flume_test</span><br><span class="line">agent.sources.s1.filegroups.f1=/home/flume_test/.*log</span><br><span class="line">agent.sources.s1.fileHeader = <span class="keyword">true</span></span><br><span class="line">######## channel相关配置 ########</span><br><span class="line">agent.channels.c1.type = memory</span><br><span class="line">agent.channels.c1.capacity = <span class="number">1000000</span></span><br><span class="line">agent.channels.c1.transactionCapacity = <span class="number">100</span></span><br><span class="line">agent.channels.c1.keep-alive = <span class="number">3</span></span><br><span class="line">######## sinks 相关配置 ########</span><br><span class="line">#agent.sinks.r1.type=logger</span><br><span class="line">agent.sinks.r1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">agent.sinks.r1.kafka.bootstrap.servers=localhost:<span class="number">9092</span></span><br><span class="line">agent.sinks.r1.kafka.topic=qstopic</span><br><span class="line">agent.sinks.r1.serializer.class=kafka.serializer.StringEncoder</span><br><span class="line">agent.sinks.r1.kafka.producer.acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动flume: <code>bin/flume-ng agent --conf conf --conf-file /root/apache-flume-1.8.0-bin/conf/kafka.conf --name agent -Dflume.root.logger=INFO,console</code></p>
 </li>
 </ul>
-</li>
-</ul>
+<h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><ul>
+<li><p>安装zookeeper</p>
 <ul>
-<li>启动flume: <code>bin/flume-ng agent --conf conf --conf-file /root/apache-flume-1.8.0-bin/conf/kafka.conf --name agent -Dflume.root.logger=INFO,console</code><h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><ul>
-<li>安装zookeeper</li>
-</ul>
-</li>
 <li>下载zookeeper</li>
 <li>解压 <code>tar -zxvf  zookeeper</code></li>
 <li>zookeeper目录下创建data和log目录:mkdir data  mkdir log</li>
@@ -110,10 +340,11 @@
 <li>编辑zoo.cfg，将dataDir修改为创建的data路径<code>dataDir=/root/zookeeper-3.4.13/data</code></li>
 <li>启动zk：  <code>bin/zkServer.sh start conf/zoo.cfg</code></li>
 <li>查看服务启动状态：<code>bin/zkServer.sh status</code></li>
-<li>或者通过jps查看zk的线程<br><img src="http://po8fy8riq.bkt.clouddn.com/zk-jps.png" alt><ul>
-<li>安装kafka </li>
+<li>或者通过jps查看zk的线程<br><img src="https://user-images.githubusercontent.com/37370131/55526032-fc1fcf80-56c5-11e9-9e20-e23f2b9f8c97.png" alt="zk-jps"></li>
 </ul>
 </li>
+<li><p>安装kafka</p>
+<ul>
 <li>下载kafka</li>
 <li>解压 tar -zxvf kafka</li>
 <li>kafka目录下创建kafka-logs目录 <code>mkdir kafka-logs</code></li>
@@ -123,9 +354,11 @@
 <li>启动（新版）kafka 消费者：<code>bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic qstopic --from-beginning</code></li>
 <li>进入flume监控目录，修改.log目录文件内容 <code>echo &#39;111&#39; &gt;&gt; test.log</code></li>
 </ul>
+</li>
+</ul>
 <h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><ul>
-<li>启动kafka的时候出现的错误，此时检查zk是否正常启动<br><img src="http://po8fy8riq.bkt.clouddn.com/localhost.png" alt></li>
-<li>安装zookeeper时候，可以查看进程启动，但是状态显示报错：Error contacting service. It is probably not running <ul>
+<li>启动kafka的时候出现的错误，此时检查zk是否正常启动<img src="https://raw.githubusercontent.com/wiki/HelloMountain/ImageBed/pic/error/localhost.png" alt="localhost"></li>
+<li>安装zookeeper时候，可以查看进程启动，但是状态显示报错：Error contacting service. It is probably not running<ul>
 <li>查看配置文件发现没错误，将之前启动的zk线程kill掉，重新启动</li>
 </ul>
 </li>
@@ -134,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/01/kafka/" data-id="cjtyfammr0003skuuq80djiuf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/01/kafka/" data-id="cju22ixm10002osuugi6lxqsx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/30/hexo/" data-id="cjtyfammp0002skuuw8qc6x6p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/30/hexo/" data-id="cju22ixm20003osuui4ffou6n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/30/hello-world - 副本/" data-id="cjtyfamme0000skuulfbdt0ks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/30/hello-world - 副本/" data-id="cju22ixlz0001osuuiy9oan53" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/30/hello-world/" data-id="cjtyfammn0001skuuyx13oy5o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/30/hello-world/" data-id="cju22ixm50005osuub02hnfon" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,19 +531,23 @@
       <ul>
         
           <li>
+            <a href="/2019/04/04/github-imageBed/">github图床</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/nginx-windows/">Windows下Nginx的启动、停止等命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/ekl/">windows环境下 elk 收集监控nginx日志</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/logstash/">如何在多台电脑上维护hexo</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/01/kafka/">linux flume监控文件输出到kafka</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hexo/">HEXO安装(Win10 64 bit )，遇到cmd报错：&#39;hexo&#39; 不是内部或外部命令，也不是可运行的程序</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hello-world - 副本/">如何在多台电脑上维护hexo</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hello-world/">Hello World</a>
           </li>
         
       </ul>

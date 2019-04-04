@@ -5,20 +5,20 @@
   
   <title>linux flume监控文件输出到kafka | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="flume监控文件 flume的安装与测试 下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf1234567891011121314151617181920212223242526272829303132  # source的名">
+  <meta name="description" content="flume监控文件 flume的安装与测试  下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf  1234567891011121314151617181920212223242526272829303132  # sourc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux flume监控文件输出到kafka">
 <meta property="og:url" content="http://yoursite.com/2019/04/01/kafka/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="flume监控文件 flume的安装与测试 下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf1234567891011121314151617181920212223242526272829303132  # source的名">
+<meta property="og:description" content="flume监控文件 flume的安装与测试  下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf  1234567891011121314151617181920212223242526272829303132  # sourc">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://po8fy8riq.bkt.clouddn.com/zk-jps.png">
-<meta property="og:image" content="http://po8fy8riq.bkt.clouddn.com/localhost.png">
-<meta property="og:updated_time" content="2019-04-01T13:50:50.905Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/37370131/55526032-fc1fcf80-56c5-11e9-9e20-e23f2b9f8c97.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/HelloMountain/ImageBed/pic/error/localhost.png">
+<meta property="og:updated_time" content="2019-04-04T03:14:24.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux flume监控文件输出到kafka">
-<meta name="twitter:description" content="flume监控文件 flume的安装与测试 下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf1234567891011121314151617181920212223242526272829303132  # source的名">
-<meta name="twitter:image" content="http://po8fy8riq.bkt.clouddn.com/zk-jps.png">
+<meta name="twitter:description" content="flume监控文件 flume的安装与测试  下载flume（windows与linux相同） 解压：tar xvzf  apache-flume-1.8.0-bin.tar.gz 进入conf目录：cd flume/conf 修改或创建配置文件：kafka.conf  1234567891011121314151617181920212223242526272829303132  # sourc">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/37370131/55526032-fc1fcf80-56c5-11e9-9e20-e23f2b9f8c97.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -94,20 +94,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="flume监控文件"><a href="#flume监控文件" class="headerlink" title="flume监控文件"></a>flume监控文件</h1><ul>
-<li>flume的安装与测试<ul>
+<li><p>flume的安装与测试</p>
+<ul>
 <li>下载flume（windows与linux相同）</li>
 <li>解压：<code>tar xvzf  apache-flume-1.8.0-bin.tar.gz</code></li>
 <li>进入conf目录：<code>cd flume/conf</code></li>
-<li>修改或创建配置文件：<code>kafka.conf</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  # source的名字</span><br><span class="line">agent.sources = s1</span><br><span class="line"># channels的名字</span><br><span class="line">agent.channels = c1</span><br><span class="line"># sink的名字</span><br><span class="line">agent.sinks = r1</span><br><span class="line"># 指定source使用的channel</span><br><span class="line">agent.sources.s1.channels = c1</span><br><span class="line"># 指定sink使用的channel</span><br><span class="line">agent.sinks.r1.channel = c1</span><br><span class="line">######## source相关配置 ########</span><br><span class="line"># source类型</span><br><span class="line">agent.sources.s1.type = TAILDIR</span><br><span class="line"># 元数据位置</span><br><span class="line">agent.sources.s1.positionFile = /root/apache-flume-<span class="number">1.8</span>.0-bin/conf/taildir_position.json</span><br><span class="line"># 监控的目录</span><br><span class="line">agent.sources.s1.filegroups = f1</span><br><span class="line">#agent.sources.s1.filegroups.f1=/Users/wangpei/tempData/flume/data/.*log  /home/flume_test</span><br><span class="line">agent.sources.s1.filegroups.f1=/home/flume_test/.*log</span><br><span class="line">agent.sources.s1.fileHeader = <span class="keyword">true</span></span><br><span class="line">######## channel相关配置 ########</span><br><span class="line">agent.channels.c1.type = memory</span><br><span class="line">agent.channels.c1.capacity = <span class="number">1000000</span></span><br><span class="line">agent.channels.c1.transactionCapacity = <span class="number">100</span></span><br><span class="line">agent.channels.c1.keep-alive = <span class="number">3</span></span><br><span class="line">######## sinks 相关配置 ########</span><br><span class="line">#agent.sinks.r1.type=logger</span><br><span class="line">agent.sinks.r1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">agent.sinks.r1.kafka.bootstrap.servers=localhost:<span class="number">9092</span></span><br><span class="line">agent.sinks.r1.kafka.topic=qstopic</span><br><span class="line">agent.sinks.r1.serializer.class=kafka.serializer.StringEncoder</span><br><span class="line">agent.sinks.r1.kafka.producer.acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<li>修改或创建配置文件：<code>kafka.conf</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  # source的名字</span><br><span class="line">agent.sources = s1</span><br><span class="line"># channels的名字</span><br><span class="line">agent.channels = c1</span><br><span class="line"># sink的名字</span><br><span class="line">agent.sinks = r1</span><br><span class="line"># 指定source使用的channel</span><br><span class="line">agent.sources.s1.channels = c1</span><br><span class="line"># 指定sink使用的channel</span><br><span class="line">agent.sinks.r1.channel = c1</span><br><span class="line">######## source相关配置 ########</span><br><span class="line"># source类型</span><br><span class="line">agent.sources.s1.type = TAILDIR</span><br><span class="line"># 元数据位置</span><br><span class="line">agent.sources.s1.positionFile = /root/apache-flume-<span class="number">1.8</span>.0-bin/conf/taildir_position.json</span><br><span class="line"># 监控的目录</span><br><span class="line">agent.sources.s1.filegroups = f1</span><br><span class="line">#agent.sources.s1.filegroups.f1=/Users/wangpei/tempData/flume/data/.*log  /home/flume_test</span><br><span class="line">agent.sources.s1.filegroups.f1=/home/flume_test/.*log</span><br><span class="line">agent.sources.s1.fileHeader = <span class="keyword">true</span></span><br><span class="line">######## channel相关配置 ########</span><br><span class="line">agent.channels.c1.type = memory</span><br><span class="line">agent.channels.c1.capacity = <span class="number">1000000</span></span><br><span class="line">agent.channels.c1.transactionCapacity = <span class="number">100</span></span><br><span class="line">agent.channels.c1.keep-alive = <span class="number">3</span></span><br><span class="line">######## sinks 相关配置 ########</span><br><span class="line">#agent.sinks.r1.type=logger</span><br><span class="line">agent.sinks.r1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">agent.sinks.r1.kafka.bootstrap.servers=localhost:<span class="number">9092</span></span><br><span class="line">agent.sinks.r1.kafka.topic=qstopic</span><br><span class="line">agent.sinks.r1.serializer.class=kafka.serializer.StringEncoder</span><br><span class="line">agent.sinks.r1.kafka.producer.acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动flume: <code>bin/flume-ng agent --conf conf --conf-file /root/apache-flume-1.8.0-bin/conf/kafka.conf --name agent -Dflume.root.logger=INFO,console</code></p>
 </li>
 </ul>
-</li>
-</ul>
+<h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><ul>
+<li><p>安装zookeeper</p>
 <ul>
-<li>启动flume: <code>bin/flume-ng agent --conf conf --conf-file /root/apache-flume-1.8.0-bin/conf/kafka.conf --name agent -Dflume.root.logger=INFO,console</code><h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><ul>
-<li>安装zookeeper</li>
-</ul>
-</li>
 <li>下载zookeeper</li>
 <li>解压 <code>tar -zxvf  zookeeper</code></li>
 <li>zookeeper目录下创建data和log目录:mkdir data  mkdir log</li>
@@ -115,10 +116,11 @@
 <li>编辑zoo.cfg，将dataDir修改为创建的data路径<code>dataDir=/root/zookeeper-3.4.13/data</code></li>
 <li>启动zk：  <code>bin/zkServer.sh start conf/zoo.cfg</code></li>
 <li>查看服务启动状态：<code>bin/zkServer.sh status</code></li>
-<li>或者通过jps查看zk的线程<br><img src="http://po8fy8riq.bkt.clouddn.com/zk-jps.png" alt><ul>
-<li>安装kafka </li>
+<li>或者通过jps查看zk的线程<br><img src="https://user-images.githubusercontent.com/37370131/55526032-fc1fcf80-56c5-11e9-9e20-e23f2b9f8c97.png" alt="zk-jps"></li>
 </ul>
 </li>
+<li><p>安装kafka</p>
+<ul>
 <li>下载kafka</li>
 <li>解压 tar -zxvf kafka</li>
 <li>kafka目录下创建kafka-logs目录 <code>mkdir kafka-logs</code></li>
@@ -128,9 +130,11 @@
 <li>启动（新版）kafka 消费者：<code>bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic qstopic --from-beginning</code></li>
 <li>进入flume监控目录，修改.log目录文件内容 <code>echo &#39;111&#39; &gt;&gt; test.log</code></li>
 </ul>
+</li>
+</ul>
 <h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><ul>
-<li>启动kafka的时候出现的错误，此时检查zk是否正常启动<br><img src="http://po8fy8riq.bkt.clouddn.com/localhost.png" alt></li>
-<li>安装zookeeper时候，可以查看进程启动，但是状态显示报错：Error contacting service. It is probably not running <ul>
+<li>启动kafka的时候出现的错误，此时检查zk是否正常启动<img src="https://raw.githubusercontent.com/wiki/HelloMountain/ImageBed/pic/error/localhost.png" alt="localhost"></li>
+<li>安装zookeeper时候，可以查看进程启动，但是状态显示报错：Error contacting service. It is probably not running<ul>
 <li>查看配置文件发现没错误，将之前启动的zk线程kill掉，重新启动</li>
 </ul>
 </li>
@@ -139,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/01/kafka/" data-id="cjtyfammr0003skuuq80djiuf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/01/kafka/" data-id="cju22ixm10002osuugi6lxqsx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,6 +151,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/04/02/logstash/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何在多台电脑上维护hexo
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/30/hexo/" id="article-nav-older" class="article-nav-link-wrap">
@@ -188,19 +201,23 @@
       <ul>
         
           <li>
+            <a href="/2019/04/04/github-imageBed/">github图床</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/nginx-windows/">Windows下Nginx的启动、停止等命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/ekl/">windows环境下 elk 收集监控nginx日志</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/logstash/">如何在多台电脑上维护hexo</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/01/kafka/">linux flume监控文件输出到kafka</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hexo/">HEXO安装(Win10 64 bit )，遇到cmd报错：&#39;hexo&#39; 不是内部或外部命令，也不是可运行的程序</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hello-world - 副本/">如何在多台电脑上维护hexo</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/30/hello-world/">Hello World</a>
           </li>
         
       </ul>

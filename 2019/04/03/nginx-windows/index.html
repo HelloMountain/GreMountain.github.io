@@ -3,15 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2019/4 | Hexo</title>
+  <title>Windows下Nginx的启动、停止等命令 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/04/index.html">
+  <meta name="description" content="1、启动：C:\server\nginx-1.0.2&amp;gt;start nginx或C:\server\nginx-1.0.2&amp;gt;nginx.exe  2、停止：C:\server\nginx-1.0.2&amp;gt;nginx.exe -s stop或C:\server\nginx-1.0.2&amp;gt;nginx.exe -s quit注：stop是快速停止nginx，可能并不保存相关信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下Nginx的启动、停止等命令">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/nginx-windows/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、启动：C:\server\nginx-1.0.2&amp;gt;start nginx或C:\server\nginx-1.0.2&amp;gt;nginx.exe  2、停止：C:\server\nginx-1.0.2&amp;gt;nginx.exe -s stop或C:\server\nginx-1.0.2&amp;gt;nginx.exe -s quit注：stop是快速停止nginx，可能并不保存相关信">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-04T02:59:24.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Windows下Nginx的启动、停止等命令">
+<meta name="twitter:description" content="1、启动：C:\server\nginx-1.0.2&amp;gt;start nginx或C:\server\nginx-1.0.2&amp;gt;nginx.exe  2、停止：C:\server\nginx-1.0.2&amp;gt;nginx.exe -s stop或C:\server\nginx-1.0.2&amp;gt;nginx.exe -s quit注：stop是快速停止nginx，可能并不保存相关信">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,115 +68,72 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/04/github-imageBed/" class="archive-article-date">
-  <time datetime="2019-04-04T02:11:22.617Z" itemprop="datePublished">Apr 4</time>
+        <section id="main"><article id="post-nginx-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/03/nginx-windows/" class="article-date">
+  <time datetime="2019-04-03T12:22:03.507Z" itemprop="datePublished">2019-04-03</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/04/github-imageBed/">github图床</a>
+    <h1 class="article-title" itemprop="name">
+      Windows下Nginx的启动、停止等命令
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/03/nginx-windows/" class="archive-article-date">
-  <time datetime="2019-04-03T12:22:03.507Z" itemprop="datePublished">Apr 3</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/nginx-windows/">Windows下Nginx的启动、停止等命令</a>
-    </h1>
-  
+        <ul>
+<li><p>1、启动：<br>C:\server\nginx-1.0.2&gt;start nginx或<br>C:\server\nginx-1.0.2&gt;nginx.exe</p>
+</li>
+<li><p>2、停止：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s stop或<br>C:\server\nginx-1.0.2&gt;nginx.exe -s quit<br>注：stop是快速停止nginx，可能并不保存相关信     息；quit是完整有序的停止nginx，并保存相关信息。</p>
+</li>
+<li><p>3、重新载入Nginx：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s reload<br>当配置信息修改，需要重新载入这些配置时使用此命令。</p>
+</li>
+<li><p>4、重新打开日志文件：<br>C:\server\nginx-1.0.2&gt;nginx.exe -s reopen</p>
+</li>
+<li><p>5、查看Nginx版本：<br>C:\server\nginx-1.0.2&gt;nginx -v</p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/03/ekl/" class="archive-article-date">
-  <time datetime="2019-04-03T10:29:40.174Z" itemprop="datePublished">Apr 3</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/ekl/">windows环境下 elk 收集监控nginx日志</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/02/logstash/" class="archive-article-date">
-  <time datetime="2019-04-02T08:15:55.929Z" itemprop="datePublished">Apr 2</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/03/nginx-windows/" data-id="cju22ixmh0007osuusnnlxb4a" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/02/logstash/">如何在多台电脑上维护hexo</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/01/kafka/" class="archive-article-date">
-  <time datetime="2019-04-01T04:24:04.266Z" itemprop="datePublished">Apr 1</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/01/kafka/">linux flume监控文件输出到kafka</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/04/github-imageBed/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          github图床
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/03/ekl/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">windows环境下 elk 收集监控nginx日志</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

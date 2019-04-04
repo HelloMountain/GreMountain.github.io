@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>windows环境下 elk 收集监控nginx日志 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.前言对于互联网公司来说，nginx的请求日志简直就是一座金矿，如果不能充分利用，简直太可惜了。初期一般都是输出到日志文件，要查什么就awk\grep\uniq\sort…，能满足不少统计需求，但最大的缺点是不直观，不方便监控（目前虽然用了ELK，但是有些信息还是用shell统计，两者互补）。整理下实施ELK最起码要实现的需求：  查询条件（精确匹配）：一级域名、二级域名、客户真实IP、HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows环境下 elk 收集监控nginx日志">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/ekl/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.前言对于互联网公司来说，nginx的请求日志简直就是一座金矿，如果不能充分利用，简直太可惜了。初期一般都是输出到日志文件，要查什么就awk\grep\uniq\sort…，能满足不少统计需求，但最大的缺点是不直观，不方便监控（目前虽然用了ELK，但是有些信息还是用shell统计，两者互补）。整理下实施ELK最起码要实现的需求：  查询条件（精确匹配）：一级域名、二级域名、客户真实IP、HTTP">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-04T01:21:16.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows环境下 elk 收集监控nginx日志">
+<meta name="twitter:description" content="1.前言对于互联网公司来说，nginx的请求日志简直就是一座金矿，如果不能充分利用，简直太可惜了。初期一般都是输出到日志文件，要查什么就awk\grep\uniq\sort…，能满足不少统计需求，但最大的缺点是不直观，不方便监控（目前虽然用了ELK，但是有些信息还是用shell统计，两者互补）。整理下实施ELK最起码要实现的需求：  查询条件（精确匹配）：一级域名、二级域名、客户真实IP、HTTP">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你想干啥</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ekl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/03/ekl/" class="article-date">
+  <time datetime="2019-04-03T10:29:40.174Z" itemprop="datePublished">2019-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      windows环境下 elk 收集监控nginx日志
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>对于互联网公司来说，nginx的请求日志简直就是一座金矿，如果不能充分利用，简直太可惜了。<br>初期一般都是输出到日志文件，要查什么就awk\grep\uniq\sort…，能满足不少统计需求，但最大的缺点是不直观，不方便监控（目前虽然用了ELK，但是有些信息还是用shell统计，两者互补）。<br>整理下实施ELK最起码要实现的需求：</p>
+<ul>
+<li>查询条件（精确匹配）：一级域名、二级域名、客户真实IP、HTTP状态码、HTTP方法、request_time、response_time、代理IP、body_bytes_sent</li>
+<li>查询条件（模糊匹配）：url（如查找SQL注入关键字）、refere（流量来源）、agent（如查找搜索引擎）、近期（1周、1个月）内整体请求量走势情况；如果发现总体走势异常，要很方便找到那个域名走势异常；</li>
+<li>过去一个周期内（1天、1周、1月）所有请求构成，按不同域名出饼图；</li>
+<li>实时监控爬虫IP过高的频率访问（如单个IP1分钟请求超过100次报警）；</li>
+<li>实时监控500状态请求情况（如单个域名1分钟出现30个500就报警）；</li>
+</ul>
+<h1 id="3-nginx配置"><a href="#3-nginx配置" class="headerlink" title="3.nginx配置"></a>3.nginx配置</h1><ul>
+<li>下载nginx</li>
+<li>解压</li>
+<li>进入config目录，修改nginx.conf</li>
+</ul>
+<p>nginx.conf<br>日志以json格式输出，方便logstash解析；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">log_format json <span class="string">'&#123;"@timestamp":"$time_iso8601",'</span></span><br><span class="line">             <span class="string">'"@version":"1",'</span></span><br><span class="line">             <span class="string">'"client":"$remote_addr",'</span></span><br><span class="line">             <span class="string">'"url":"$uri",'</span></span><br><span class="line">             <span class="string">'"status":"$status",'</span></span><br><span class="line">             <span class="string">'"domian":"$host",'</span></span><br><span class="line">             <span class="string">'"host":"$server_addr",'</span></span><br><span class="line">             <span class="string">'"size":"$body_bytes_sent",'</span></span><br><span class="line">             <span class="string">'"responsetime":"$request_time",'</span></span><br><span class="line">             <span class="string">'"referer":"$http_referer",'</span></span><br><span class="line">             <span class="string">'"ua":"$http_user_agent"'</span></span><br><span class="line">          <span class="string">'&#125;'</span>;</span><br><span class="line">access_log  logs/access.log  json;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>启动 nginx (有很多种方法启动 nginx ）</p>
+<ul>
+<li>(1)直接双击nginx.exe，双击后一个黑色的弹窗一闪而过</li>
+<li>(2)打开cmd命令窗口，切换到nginx解压目录下，输入命令 nginx.exe 或者 start nginx ，回车即可</li>
+</ul>
+</li>
+<li><p>检查nginx是否启动成功<br>  直接在浏览器地址栏输入网址 <a href="http://localhost:80/" target="_blank" rel="noopener">http://localhost:80/</a>，回车，出现以下页面说明启动成功</p>
+</li>
+<li><p>关闭nginx</p>
+<pre><code>如果使用cmd命令窗口启动nginx，关闭cmd窗口是不能结束nginx进程的，可使用两种方法关闭nginx
+</code></pre><ul>
+<li>(1)输入nginx命令  nginx -s stop(快速停止nginx)  或  nginx -s quit(完整有序的停止nginx)</li>
+<li>(2)使用taskkill   taskkill /f /t /im nginx.exe</li>
+</ul>
+</li>
+<li><p>参考博客：<a href="https://www.cnblogs.com/jiangwangxiang/p/8481661.html/" target="_blank" rel="noopener">https://www.cnblogs.com/jiangwangxiang/p/8481661.html/</a></p>
+</li>
+</ul>
+<h1 id="4-logstash配置"><a href="#4-logstash配置" class="headerlink" title="4.logstash配置"></a>4.logstash配置</h1><p>logstash是作为数据采集，功能和flume类似</p>
+<ul>
+<li>下载 logstash</li>
+<li>解压</li>
+<li>进入bin目录新建配置文件logstash.conf</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    file &#123;</span><br><span class="line">        path =&gt; <span class="string">"C:/Users/qingshan/Downloads/nginx-1.15.10/logs/access.log"</span></span><br><span class="line">        type =&gt; <span class="string">"nginx"</span></span><br><span class="line">        codec =&gt; <span class="string">"json"</span></span><br><span class="line">        start_position =&gt; <span class="string">"beginning"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter &#123;</span><br><span class="line">    geoip &#123;</span><br><span class="line">        fields =&gt; [<span class="string">"city_name"</span>, <span class="string">"country_name"</span>, <span class="string">"latitude"</span>, <span class="string">"longitude"</span>, <span class="string">"region_name"</span>,<span class="string">"region_code"</span>]</span><br><span class="line">        source =&gt; <span class="string">"client"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">    <span class="keyword">if</span> [type] == <span class="string">"nginx"</span> &#123;</span><br><span class="line">        elasticsearch &#123;</span><br><span class="line">            hosts =&gt; [<span class="string">"127.0.0.1:9200"</span>]</span><br><span class="line">            index =&gt; <span class="string">"nelson-nginx-%&#123;+YYYY.MM.dd&#125;"</span></span><br><span class="line">        &#125;</span><br><span class="line">        stdout &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令行进入logstash 目录 ，启动logstash <code>bin\logstash -f logstash.conf</code></li>
+<li>浏览器访问:<a href="http://localhost:9600/" target="_blank" rel="noopener">http://localhost:9600/</a></li>
+</ul>
+<hr>
+<p>error</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Elasticsearch Unreachable: [http://127.0.0.1:9200/][Manticore::SocketException] Connection refused: connect"</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>检查发现未开启es</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/03/ekl/" data-id="cju22ixlp0000osuul5ofv5n5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/03/nginx-windows/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Windows下Nginx的启动、停止等命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/02/logstash/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何在多台电脑上维护hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/04/github-imageBed/">github图床</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/nginx-windows/">Windows下Nginx的启动、停止等命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/ekl/">windows环境下 elk 收集监控nginx日志</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/logstash/">如何在多台电脑上维护hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/01/kafka/">linux flume监控文件输出到kafka</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 tanqingshan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
